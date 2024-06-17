@@ -38,11 +38,13 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body:isLoading || imageUrl=="" || imageUrl==null ?
-      Container(
-        width: 200,
-        height:200,
-        child: CircularProgressIndicator(),
-    ) :
+      Center(
+        child: Container(
+          width: 200,
+          height:200,
+          child: CircularProgressIndicator(),
+            ),
+      ) :
       Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -71,65 +73,67 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ],
           ) :
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: 150,),
-              // Todo:Meme Count
-              Padding(
-                padding:EdgeInsets.only(bottom: 10),
-                child: Text("MEME ${memeCount}",style: TextStyle(fontSize:40,color:Colors.red,fontWeight: FontWeight.bold),),
-              ),
-              // Todo:Target Meme Number
-              Padding(
-                padding: EdgeInsets.only(bottom: 40),
-                child: Text("Target 100 MEME",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-              ),
-              // Todo: Image box
-              imageUrl==null ? Container(
-                width: 200,
-                height:200,
-                child: CircularProgressIndicator(),
-              ):Image.network(height:350,fit: BoxFit.fitHeight,imageUrl),
-              // Todo:Button using inkwell
-              Padding(
-                padding: EdgeInsets.only(top: 40),
-                child: InkWell(
-                  onTap: (){
-                    getSingleMeme();
-                  },
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 100,),
+                // Todo:Meme Count
+                Padding(
+                  padding:EdgeInsets.only(bottom: 10),
+                  child: Text("MEME ${memeCount}",style: TextStyle(fontSize:30,color:Colors.red,fontWeight: FontWeight.bold),),
+                ),
+                // Todo:Target Meme Number
+                Padding(
+                  padding: EdgeInsets.only(bottom: 40),
+                  child: Text("Target 100 MEME",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
+                ),
+                // Todo: Image box
+                imageUrl==null ? Center(
                   child: Container(
-                    width: 160,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: Colors.red.shade500,
-                      border: Border.all(
-                        color: Colors.red,
-                        width: 2,
+                    width: 200,
+                    height:200,
+                    child: CircularProgressIndicator(),
+                  ),
+                ):Container(width:MediaQuery.of(context).size.width,child: Image.network(height:350,fit: BoxFit.fitHeight,imageUrl)),
+                // Todo:Button using inkwell
+                Padding(
+                  padding: EdgeInsets.only(top: 40),
+                  child: InkWell(
+                    onTap: (){
+                      getSingleMeme();
+                    },
+                    child: Container(
+                      width: 160,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.red.shade500,
+                        border: Border.all(
+                          color: Colors.red.shade500,
+                          width: 2,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.red,
+                            blurRadius: 5,
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.red,
-                          blurRadius: 5,
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(12),
+                      child: Center(child: Text("Get Meme",
+                        style: TextStyle(fontSize: 25,color: Colors.white,fontWeight: FontWeight.bold),)),
                     ),
-                    child: Center(child: Text("Get Meme",
-                      style: TextStyle(fontSize: 25,color: Colors.white,fontWeight: FontWeight.bold),)),
                   ),
                 ),
-              ),
-              Spacer(),
-              // Todo:Footer
-              Container(
-                margin: EdgeInsets.only(top: 100),
-                child: Text("Meme App Created By",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),),
-              ),
-              Text("Ayush Garg",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold),),
-              SizedBox(height: 30,),
-            ],
-        
+                // Todo:Footer
+                Container(
+                  margin: EdgeInsets.only(top: 100),
+                  child: Text("Meme App Created By",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),),
+                ),
+                Text("Ayush Garg",style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold),),
+                ],
+
+            ),
           )
         ),
       ),
